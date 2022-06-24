@@ -8,7 +8,9 @@ public class MoveDown : MonoBehaviour
 
     public float speed = 1f;
     private float factor = -1f;
-    
+    //on peut également ajouter un range >>> crée un slider dans unity avec un min/max
+    //ex : [Range(0, 5f)]
+
     public GameObject maxYPosition;
     public GameObject minYPosition;
     // Start is called before the first frame update
