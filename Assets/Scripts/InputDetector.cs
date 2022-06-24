@@ -8,6 +8,14 @@ public class InputDetector : MonoBehaviour
     [HideInInspector]
     public UnityEvent onInputDetected;
 
+    public UnityEvent onSneeze;
+    
+    [System.Serializable]
+    public class SneezeEvent : UnityEvent<int>{}
+    public SneezeEvent onSneezeWithNumber;
+    int numberOfSneezes = 0;
+    
+    
     /*Serialize Field fait en sorte que Unity montre un champ privé dans l'inspecteur (inverse de HideInspector)
     [SerializeField] // "Donne-moi une représention de chose"
     private int number;
@@ -27,7 +35,9 @@ public class InputDetector : MonoBehaviour
         if(Input.anyKeyDown)
         {
             onInputDetected?.Invoke(); // ?. = "si ma condition n'est pas nulle, tu peux Invoke() cela"
-            Debug.Log("A key was pressed!");
+            numberOfSneezes++;
+            onSneeze?.Invoke();
+            onSneezeWithNumber?.Invoke(numberOfSneezes); // Dans Unity, bien choisir la function Dynamic int et pas Static
         }
         
         // Equivalant à : 
